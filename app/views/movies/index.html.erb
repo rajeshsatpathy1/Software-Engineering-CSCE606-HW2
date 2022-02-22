@@ -3,6 +3,17 @@
 
 <%#  Part 1: Start here... %>
 
+<% if @sort_title_flag %>
+  <a href = "/sort_title" id = "title_header"><button type="button" class="btn btn-primary">Sort Titles</button></a>
+<% else %>
+  <a href = "/sort_title" id = "title_header"><button type="button" class="btn btn-warning">Sort Titles</button></a>
+<% end %>
+<% if @sort_date_flag %>
+  <a href = "/sort_rel_dates" id = "release_date_header"><button type="button" class="btn btn-primary">Sort Release Dates</button></a>
+<% else %>
+  <a href = "/sort_rel_dates" id = "release_date_header"><button type="button" class="btn btn-warning">Sort Release Dates</button></a>
+<% end %>
+
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>

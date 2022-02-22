@@ -8,6 +8,22 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @sort_title_flag = true
+    @sort_date_flag = true
+  end
+  
+  def sort_title
+    @movies = Movie.order(:title)
+    @sort_title_flag = false
+    @sort_date_flag = true
+    render :index
+  end
+  
+  def sort_rel_dates
+    @movies = Movie.order(:release_date)
+    @sort_title_flag = true
+    @sort_date_flag = false
+    render :index
   end
 
   def new
