@@ -8,14 +8,23 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @ratings = Movie.get_unique_ratings
+    @ratings_checks = @ratings
     
     if params[:sort] == 'title'
-      @movies = Movie.order(:title)
+      @movies = @movies.order(:title)
       @sort_title = 'p-3 mb-2 bg-warning text-blue'
     elsif params[:sort] == 'release_date'
-      @movies = Movie.order(:release_date)
+      @movies = @movies.order(:release_date)
       @sort_date = 'p-3 mb-2 bg-warning text-blue'
     end
+    
+    if params[:ratings]
+      # print(params[:ratings].keys)
+      @ratings_checks = params[:ratings].keys
+      @movies = Movie.where(rating: @ratings_checks)
+    end
+    
   end
 
   def new
