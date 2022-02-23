@@ -11,19 +11,34 @@ class MoviesController < ApplicationController
     @ratings = Movie.get_unique_ratings
     @ratings_checks = @ratings
     
-    if params[:sort] == 'title'
+        
+    if params.key?(:sort)
+      session[:sort] = params[:sort]
+    end
+    
+    if params.key?(:ratings)
+      session[:ratings] = params[:ratings].keys
+    end
+    
+    
+    # puts(params[:ratings])
+    puts(session[:ratings])
+    
+    if session.key?(:ratings)
+      @ratings_checks = session[:ratings]
+      @movies = Movie.where(rating: @ratings_checks)
+    end
+    
+    
+    if session[:sort] == 'title'
       @movies = @movies.order(:title)
       @sort_title = 'p-3 mb-2 bg-warning text-blue'
-    elsif params[:sort] == 'release_date'
+    elsif session[:sort] == 'release_date'
       @movies = @movies.order(:release_date)
       @sort_date = 'p-3 mb-2 bg-warning text-blue'
     end
     
-    if params[:ratings]
-      # print(params[:ratings].keys)
-      @ratings_checks = params[:ratings].keys
-      @movies = Movie.where(rating: @ratings_checks)
-    end
+    flash.keep
     
   end
 
