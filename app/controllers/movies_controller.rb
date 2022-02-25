@@ -21,12 +21,9 @@ class MoviesController < ApplicationController
     end
     
     
-    # puts(params[:ratings])
-    puts(session[:ratings])
-    
     if session.key?(:ratings)
       @ratings_checks = session[:ratings]
-      @movies = Movie.where(rating: @ratings_checks)
+      @movies = @movies.where(rating: @ratings_checks)
     end
     
     
