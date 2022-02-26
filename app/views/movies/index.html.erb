@@ -15,10 +15,10 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th class="<%= 'hilite bg-warning' if params[:sort] == 'title' %>"><%= link_to "Movie Title", movies_path(:sort => 'title'), id: "title_header" %></th>
+      <th class="<%= 'hilite bg-warning' if session[:sort] == 'title' %>"><%= link_to "Movie Title", movies_path(:sort => 'title'), id: "title_header" %></th>
       <!--<th class='hilite'> <%= link_to "Movie Title", movies_path(:sort => "title"), id: "title_header", class: @sort_title %></th>-->
       <th>Rating</th>
-      <th class="<%= 'hilite bg-warning' if params[:sort] == 'release_date' %>"><%= link_to "Release Date", movies_path(:sort => 'release_date'), id: "release_date_header" %></th>
+      <th class="<%= 'hilite bg-warning' if session[:sort] == 'release_date' %>"><%= link_to "Release Date", movies_path(:sort => 'release_date'), id: "release_date_header" %></th>
       <!--<th class='hilite'><%= link_to "Release Date", movies_path(:sort => "release_date"), id: "release_date_header", class: @sort_date %></th>-->
       <th>More Info</th>
     </tr>
